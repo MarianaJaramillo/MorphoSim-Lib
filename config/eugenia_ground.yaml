@@ -1,0 +1,30 @@
+# Geometry configuration for Morpho M. eugenia (ground scale)
+# Units: micrometers (µm)
+
+# --- Layers ---
+number_of_layers: 1.0
+chitin_layer_thickness: 0.1246
+air_layer_thickness: 0.0985
+
+# --- Ridge ---
+ridge_trunk_width: 0.015
+ridge_total_width: 0.3191
+number_of_ridges_along_x: 2
+air_gap_between_ridges_along_x: 0.1870
+
+# --- Global dimensions ---
+structure_thickness_along_y: 1.0
+substrate_thickness_along_z: 0.1     # 0.16 shifts peak reflectance to blue
+air_gap_below_substrate_along_z: 1.45
+
+# --- Shape and arrangement ---
+branch_arrangement: aligned           # 'aligned' or 'staggered'
+tree_shape: regular                   # 'regular' or 'triangular'
+inclination_angle_radians: 0.0        # ~0.174 rad (~10 degrees)
+
+# --- Pillars (not active) ---
+pillar_thickness_along_y: 0.0
+air_gap_between_pillars_along_y: 0.0
+
+# --- Material ---
+chitin_refractive_index: 1.56

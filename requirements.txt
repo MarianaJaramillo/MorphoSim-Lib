@@ -1,0 +1,13 @@
+# Parametric Geometry
+cadquery>=2.4.0
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+colour-science>=0.4.0
+
+# Settings and utilities
+pyyaml>=6.0.0
+
+# Visualization
+matplotlib>=3.7.0
