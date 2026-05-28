@@ -4,6 +4,14 @@ A Python library for parametric 3D geometry generation and FDTD optical simulati
 
 ---
 
+## Authors
+
+This project was created by:
+- **Mariana Jaramillo** (mariana.jaramillo2@udea.edu.co)
+- **Juan Pablo Sanchez** (pablo.sanchez2@udea.edu.co)
+
+---
+
 ## Overview
 
 *Morpho* butterflies produce their vivid iridescent blue through photonic nanostructures on their wing scales — not pigments. This library lets you:
