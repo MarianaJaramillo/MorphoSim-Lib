@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+env/
+venv/
+.env
+.venv/
+
+# Resultados generados (binarios grandes, no van a git)
+results/model/
+results/reflectance_data/
+results/simulation_file/
+results/logs/
+results/configs/
+
+# Modelos legacy (generados automáticamente con timestamp)
+data/models/
+
+# Archivos Lumerical temporales/backup
+*.lsf~
+backup_for_*.fsp
+backup_for_*.lsf
+
+# Archivos de prueba sueltos en data/
+data/*.fsp
+data/*.log
