@@ -1,5 +1,18 @@
+"""Parametric 3D geometry for Morpho butterfly wing nanostructures.
+
+Classes
+-------
+MorphoRidge      — single photonic ridge (tree-like lamellar stack).
+MorphoSubstrate  — chitin base layer below the ridges.
+MorphoPillars    — lateral support pillars connecting substrate to scale cover.
+MorphoStructure  — top-level assembler; produces the full simulation unit cell.
+
+All spatial units are in micrometres (µm) unless noted otherwise.
+"""
+
 import cadquery as cq
 import numpy as np
+
 
 class MorphoRidge:
     """Creates a single ridge (tree-like)"""
@@ -266,12 +279,13 @@ class MorphoPillars:
         pillars_union = cq.Workplane("XY")
         step_y = self.pillar_thickness_y + self.air_gap_between_pillars_y
         num_pillars = int(self.depth_y / step_y)
-        
-        for l in range(num_pillars):
-            y_position = l * step_y
+
+        for pillar_idx in range(num_pillars):
+            y_position = pillar_idx * step_y
             if (y_position + self.pillar_thickness_y <= self.depth_y):
                 pillars_union = pillars_union.union(base_pillar.translate((0, y_position, 0)))
         return pillars_union
+
 
 class MorphoStructure:
     """MASTER CLASS: Assembles the entire system"""
@@ -296,11 +310,11 @@ class MorphoStructure:
 
     def build_grating(self):
         """
-        Replicate the ridge geometry along the X axis to form a grating.
+        Replicate the ridge geometry along the X axis to form a periodic grating.
+
         Returns:
             cadquery.Workplane: The full grating geometry.
         """
-        """Replicates the Ridge along the X axis"""
         single_ridge = self.ridge_generator.build()
         full_grating = cq.Workplane("XY")
         number_of_ridges_x = int(self.config['number_of_ridges_along_x'])

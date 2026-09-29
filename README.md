@@ -33,20 +33,27 @@ MorphoSim-Lib/
 ├── config/                  # YAML configuration files (one per species/variant)
 │   └── menelaus_ground.yaml
 ├── core/
+│   ├── __init__.py          # Package exports
 │   ├── geometry.py          # Parametric 3D geometry (CadQuery)
+│   ├── plotting.py          # Matplotlib plotting helpers
 │   └── simulation_setup.py  # Lumerical FDTD setup, analysis, and export
 ├── notebooks/               # Jupyter notebooks for parameter sweeps and plotting
 ├── results/                 # Generated outputs (excluded from git)
-│   ├── configs/             # JSON snapshot of config for each run
-│   ├── logs/                # Lumerical simulation logs
-│   ├── model/               # Exported STL files
-│   ├── reflectance_data/    # CSV reflectance spectra
-│   └── simulation_file/     # Lumerical .fsp project files
+│   └── {species}/
+│       └── {run_name}/      # ALL files for one run live here
+│           ├── run_name.json          # config snapshot
+│           ├── run_name.stl           # exported geometry
+│           ├── run_name_total.csv     # reflectance / far-field data
+│           ├── run_name_reflectance_total.png
+│           ├── run_name_reflectance.fsp   # Lumerical project file
+│           └── run_name_reflectance.log
 ├── main.py                  # Entry point
 └── requirements.txt
 ```
 
-All output folders are organized by species (e.g., `results/model/menelaus/`).
+All files produced by a single run are co-located in `results/{species}/{run_name}/`.
+This makes it easy to share (`zip results/menelaus/my_run`), delete, or inspect a run
+without hunting across multiple type-organised sub-folders.
 
 ---
 
@@ -65,6 +72,7 @@ pip install -r requirements.txt
 | `pandas` | CSV result handling |
 | `pyyaml` | Configuration file loading |
 | `matplotlib` | Reflectance spectrum plotting |
+| `colour-science` | CIE XYZ → sRGB conversion for far-field colour maps |
 
 ### Lumerical FDTD (optional)
 
@@ -72,6 +80,7 @@ The geometry generation phase works without Lumerical. FDTD simulation (Phase 2 
 
 - [Ansys Lumerical FDTD](https://www.ansys.com/products/photonics/fdtd) with a valid license
 - Default API path: `C:\Program Files\Lumerical\v241\API\Python`
+- Override the path without editing code: `set LUMERICAL_API_PATH=C:\your\path` before running.
 
 If Lumerical is not installed, the program runs Phase 1 (geometry + STL export) without errors.
 

@@ -9,7 +9,7 @@ air_layer_thickness: 0.1
 # --- Ridge ---
 ridge_trunk_width: 0.015
 ridge_total_width: 0.5
-number_of_ridges_along_x: 2
+number_of_ridges_along_x: 13
 air_gap_between_ridges_along_x: 0.15  # 0.275 shifts reflectance to a different range
 
 # --- Global dimensions ---

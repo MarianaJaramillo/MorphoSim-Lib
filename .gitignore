@@ -2,27 +2,24 @@
 __pycache__/
 *.py[cod]
 
-# Entornos virtuales
+# Virtual environments
 env/
 venv/
 .env
 .venv/
 
-# Resultados generados (binarios grandes, no van a git)
-results/model/
-results/reflectance_data/
-results/simulation_file/
-results/logs/
-results/configs/
+# Generated results — large binaries, not tracked in git.
+# Each run produces:  results/{species}/{run_name}/
+results/
 
-# Modelos legacy (generados automáticamente con timestamp)
+# Legacy data models (auto-generated with timestamp)
 data/models/
 
-# Archivos Lumerical temporales/backup
+# Lumerical temporary / backup files
 *.lsf~
 backup_for_*.fsp
 backup_for_*.lsf
 
-# Archivos de prueba sueltos en data/
+# Loose test files in data/
 data/*.fsp
 data/*.log
