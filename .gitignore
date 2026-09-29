@@ -23,3 +23,16 @@ backup_for_*.lsf
 # Loose test files in data/
 data/*.fsp
 data/*.log
+
+# Personal scratch / ad-hoc test scripts — not part of the public API or test suite
+test_*.py
+scratch_*.py
+
+# Personal AI-assistant prompt notes — not project documentation
+docs/performance_intructions.md
+docs/intructions_coed_review.md
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
