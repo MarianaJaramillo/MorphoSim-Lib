@@ -8,7 +8,10 @@ A Python library for parametric 3D geometry generation and FDTD optical simulati
 
 This project was created by:
 - **Mariana Jaramillo** (mariana.jaramillo2@udea.edu.co)
-- **Juan Pablo Sanchez** (pablo.sanchez2@udea.edu.co)
+
+## Acknowledgments
+
+The author thanks **Juan Pablo Sanchez** for his contribution to the development of this library.
 
 ---
 
@@ -22,7 +25,12 @@ This project was created by:
 - **Analyze results** as total, crossed-polarizer, or parallel-polarizer reflectance spectra
 - **Track every run** with an auto-saved JSON config alongside each output file
 
-Currently supports models for *Morpho rhetenor* and *Morpho menelaus*.
+The geometry and simulation engine are species-agnostic: any nanostructure
+described by the YAML schema below can be built and simulated. This public
+repository ships the full configuration for ***Morpho menelaus***, the species
+featured in the associated publication, as a working reference. Configuration
+files for other species studied in the broader research project are kept
+private pending their own publication and are excluded via `.gitignore`.
 
 ---
 
@@ -31,13 +39,14 @@ Currently supports models for *Morpho rhetenor* and *Morpho menelaus*.
 ```
 MorphoSim-Lib/
 ├── config/                  # YAML configuration files (one per species/variant)
-│   └── menelaus_ground.yaml
+│   ├── menelaus_cover.yaml  # public — Morpho menelaus (cover scale)
+│   └── menelaus_ground.yaml # public — Morpho menelaus (ground scale)
 ├── core/
 │   ├── __init__.py          # Package exports
 │   ├── geometry.py          # Parametric 3D geometry (CadQuery)
 │   ├── plotting.py          # Matplotlib plotting helpers
 │   └── simulation_setup.py  # Lumerical FDTD setup, analysis, and export
-├── notebooks/               # Jupyter notebooks for parameter sweeps and plotting
+├── notebooks/               # Jupyter notebooks for parameter sweeps and plotting (local only, excluded from git)
 ├── results/                 # Generated outputs (excluded from git)
 │   └── {species}/
 │       └── {run_name}/      # ALL files for one run live here
@@ -48,12 +57,17 @@ MorphoSim-Lib/
 │           ├── run_name_reflectance.fsp   # Lumerical project file
 │           └── run_name_reflectance.log
 ├── main.py                  # Entry point
+├── LICENSE                  # CC BY 4.0
 └── requirements.txt
 ```
 
 All files produced by a single run are co-located in `results/{species}/{run_name}/`.
 This makes it easy to share (`zip results/menelaus/my_run`), delete, or inspect a run
 without hunting across multiple type-organised sub-folders.
+
+> **Note on scope:** configuration files and notebooks for species other than
+> *Morpho menelaus* are part of ongoing unpublished research and are not
+> distributed in this repository (see `.gitignore`).
 
 ---
 
@@ -101,17 +115,18 @@ Example session:
 
 ```
 Available configurations:
-  [0] menelaus_ground.yaml
-  [1] rhetenor.yaml
+  [0] menelaus_cover.yaml
+  [1] menelaus_ground.yaml
 
-Select configuration (number or name): 0
+Select configuration (number or name): 1
 [OK] Configuration loaded from: config/menelaus_ground.yaml
 
 Enter experiment name for [menelaus] (no extension): G_cross_test
-[OK] Configuration saved at: results/configs/menelaus/G_cross_test.json
+[OK] Run directory : results/menelaus/G_cross_test
+[OK] Configuration saved at: results/menelaus/G_cross_test/G_cross_test.json
 
 --- [PHASE 1] Geometry Generation ---
-[OK] STL file saved at: results/model/menelaus/G_cross_test.stl
+[OK] STL file saved at: results/menelaus/G_cross_test/G_cross_test.stl
 ```
 
 ---
@@ -141,10 +156,12 @@ Key parameters:
 
 ## Reproducibility
 
-Every time `main.py` runs, a JSON file is saved at `results/configs/{species}/{experiment_name}.json` containing the full config, the source YAML filename, and a timestamp. This makes every result traceable back to its exact parameters.
+Every time `main.py` runs, a JSON file is saved at `results/{species}/{experiment_name}/{experiment_name}.json` containing the full config, the source YAML filename, and a timestamp. This makes every result traceable back to its exact parameters.
 
 ---
 
 ## License
 
-This project is part of ongoing MSc research. License TBD.
+This project is licensed under [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE).
+You are free to share and adapt this material for any purpose, provided appropriate
+credit is given to the authors.

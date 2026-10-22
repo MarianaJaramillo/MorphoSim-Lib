@@ -32,6 +32,17 @@ scratch_*.py
 docs/performance_intructions.md
 docs/intructions_coed_review.md
 
+# Species configuration files — unpublished research data.
+# Only Morpho menelaus (the species featured in the associated publication)
+# is kept public; all other species/variants stay private until published.
+config/*.yaml
+!config/menelaus_cover.yaml
+!config/menelaus_ground.yaml
+
+# Exploratory notebooks — reference private species data / local result paths,
+# kept out of the public supplementary-materials repository.
+notebooks/
+
 # Editor / OS
 .vscode/
 .DS_Store
