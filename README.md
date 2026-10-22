@@ -8,7 +8,6 @@ A Python library for parametric 3D geometry generation and FDTD optical simulati
 
 This project was created by:
 - **Mariana Jaramillo** (mariana.jaramillo2@udea.edu.co)
-- **Juan Pablo Sanchez** (pablo.sanchez2@udea.edu.co)
 
 ---
 
